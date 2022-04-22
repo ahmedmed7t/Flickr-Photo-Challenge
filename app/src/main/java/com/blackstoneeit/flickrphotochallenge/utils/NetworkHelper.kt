@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 
-class NetworkHelper() {
+object NetworkHelper {
     @SuppressLint("ServiceCast")
     fun isNetworkConnected(context: Context): Boolean {
         var result = false

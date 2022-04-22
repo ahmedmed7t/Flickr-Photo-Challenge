@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/Flickrphotochallenge/app/src/main/res/drawable/container_border.xml" value="0.161" />
         <entry key="..\:/Android Studio Projects/Flickrphotochallenge/app/src/main/res/layout/activity_main.xml" value="0.16302083333333334" />
+        <entry key="..\:/Android Studio Projects/Flickrphotochallenge/app/src/main/res/layout/activity_photos_list.xml" value="0.25" />
+        <entry key="..\:/Android Studio Projects/Flickrphotochallenge/app/src/main/res/layout/ad_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Android Studio Projects/Flickrphotochallenge/app/src/main/res/layout/post_item.xml" value="0.1913265306122449" />
       </map>
     </option>
   </component>
