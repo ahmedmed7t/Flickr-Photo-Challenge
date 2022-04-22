@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".flickerImageList.presentation.PhotosListActivity">
 
+    <data>
+        <variable
+            name="callback"
+            type="com.blackstoneeit.flickrphotochallenge.flickerImageList.presentation.handler.ViewClickHandler"/>
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".flickerImageList.presentation.PhotosListActivity">
+        >
+
+        <LinearLayout
+            android:id="@+id/photoFilterContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_28sdp"
+            android:padding="@dimen/_1sdp"
+            android:background="@drawable/container_border"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/photosFilterGlobalTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{callback.onGlobalFilterClick}"
+                android:textSize="@dimen/_14ssp"
+                android:text="@string/global"
+                android:background="@color/design_default_color_primary"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/photosFilterLocalTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:onClick="@{callback.onLocalFilterClick}"
+                android:gravity="center"
+                android:textSize="@dimen/_14ssp"
+                android:text="@string/local"
+                android:textColor="@color/black"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/photosRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/photoFilterContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <androidx.appcompat.widget.AppCompatImageView

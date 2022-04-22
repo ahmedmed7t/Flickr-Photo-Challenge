@@ -3,14 +3,18 @@ package com.blackstoneeit.flickrphotochallenge.flickerImageList.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.blackstoneeit.flickrphotochallenge.R
 import com.blackstoneeit.flickrphotochallenge.databinding.AdItemBinding
 import com.blackstoneeit.flickrphotochallenge.databinding.PostItemBinding
 import com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.models.PhotoModel
+import com.blackstoneeit.flickrphotochallenge.flickerImageList.presentation.handler.PhotoListClickListener
 import com.blackstoneeit.flickrphotochallenge.utils.FlickerImageUtils
 import com.bumptech.glide.Glide
 
 class PhotoListAdapter(
-    private var photoList: ArrayList<PhotoModel>
+    private var photoList: ArrayList<PhotoModel>,
+    private val clickListener: PhotoListClickListener,
+    private var screenMode: Int
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val POST_TYPE = 1
     private val AD_TYPE = 0
@@ -35,12 +39,17 @@ class PhotoListAdapter(
                 .into(holder.binding.adContentImageView)
         } else {
             holder as PostViewHolder
+            if(screenMode == PhotosListActivity.GLOBAL_MODE){
+                holder.binding.photoDownloadImage.setImageResource(R.drawable.ic_baseline_arrow_downward_24)
+            }else{
+                holder.binding.photoDownloadImage.setImageResource(R.drawable.ic_baseline_close_24)
+            }
             Glide.with(holder.itemView.context)
                 .load(FlickerImageUtils.getImageUrl(photoList[position]))
                 .into(holder.binding.photoImage)
             holder.binding.photoTitleTextView.text = photoList[position].title
             holder.binding.photoDownloadImage.setOnClickListener {
-
+                clickListener.onClick(position)
             }
         }
     }
@@ -59,8 +68,9 @@ class PhotoListAdapter(
 
     inner class AdViewHolder(val binding: AdItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    fun setPhotos(photos: ArrayList<PhotoModel>){
+    fun setPhotos(photos: ArrayList<PhotoModel>, screenMode: Int){
         photoList = photos
+        this.screenMode = screenMode
         notifyDataSetChanged()
     }
 }
