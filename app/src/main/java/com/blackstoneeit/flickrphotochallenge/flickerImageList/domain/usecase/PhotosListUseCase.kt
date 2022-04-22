@@ -5,7 +5,6 @@ import com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.repository
 class PhotosListUseCase(
     private val photosRemoteRepository: PhotosRemoteRepository
 ) {
-    suspend fun loadPhotos(){
-        photosRemoteRepository.loadPhotosList()
-    }
+    suspend fun loadPhotos(page: Int) =
+        photosRemoteRepository.loadPhotosList(page)
 }

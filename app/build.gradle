@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -15,11 +16,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'BASE_URL', "\"https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=50&text=Color&page={page_count}&per_page=20&api_key=d17378e37e555ebef55ab86c4180e8dc\""
+        buildConfigField 'String', 'BASE_URL', "\"https://www.flickr.com/services/rest/\""
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -30,6 +37,11 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
 }
 
@@ -49,15 +61,10 @@ dependencies {
 
     // Koin main features for Android (Scope,ViewModel ...)
     implementation "io.insert-koin:koin-android:3.0.1-beta-1"
-// Koin Android - experimental builder extensions
-//    implementation "io.insert-koin:koin-android-ext:3.0.1-beta-1"
-// Koin for Jetpack WorkManager
-//    implementation "io.insert-koin:koin-androidx-workmanager:3.0.1-beta-1"
 
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
     implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
-
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -69,9 +76,12 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
 
-
     implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    def specialVersion = "1.0.6"
+    implementation "com.intuit.sdp:sdp-android:$specialVersion"
+    implementation "com.intuit.ssp:ssp-android:$specialVersion"
 
 }
