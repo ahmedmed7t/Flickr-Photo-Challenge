@@ -14,14 +14,11 @@ val appModule = module {
     single { provideOkHttpClient() }
     single { provideRetrofit(get(), BASE_URL) }
     single { provideApiService(get()) }
-    single { provideNetworkHelper() }
 }
-
-private fun provideNetworkHelper(): NetworkHelper = NetworkHelper()
 
 private fun provideOkHttpClient(): OkHttpClient = if (BuildConfig.DEBUG) {
     val loggingInterceptor = HttpLoggingInterceptor()
-    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS)
     OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()
