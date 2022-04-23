@@ -3,17 +3,21 @@
     package="com.blackstoneeit.flickrphotochallenge">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:name=".app.App"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FlickrPhotoChallenge">
+        android:theme="@style/Theme.FlickrPhotoChallenge"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".flickerFullImage.presentation.FullPhotoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FlickrPhotoChallenge.NoActionBar"/>
         <activity
             android:name=".flickerImageList.presentation.PhotosListActivity"
             android:exported="true">

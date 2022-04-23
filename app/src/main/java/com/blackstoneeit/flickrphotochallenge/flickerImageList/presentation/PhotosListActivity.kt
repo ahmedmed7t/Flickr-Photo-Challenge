@@ -1,6 +1,8 @@
 package com.blackstoneeit.flickrphotochallenge.flickerImageList.presentation
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.blackstoneeit.flickrphotochallenge.R
 import com.blackstoneeit.flickrphotochallenge.databinding.ActivityPhotosListBinding
+import com.blackstoneeit.flickrphotochallenge.flickerFullImage.presentation.FullPhotoActivity
 import com.blackstoneeit.flickrphotochallenge.flickerImageList.presentation.handler.PhotoListClickListener
 import com.blackstoneeit.flickrphotochallenge.flickerImageList.presentation.handler.ViewClickHandler
 import com.blackstoneeit.flickrphotochallenge.utils.NetworkHelper
@@ -163,8 +166,14 @@ class PhotosListActivity : AppCompatActivity(), PhotoListClickListener, ViewClic
         }
     }
 
-    override fun onClick(position: Int) =
+    override fun onActionClick(position: Int) =
         viewModel.photoActionClicked(position, currentMode)
+
+    override fun onClick(position: Int) {
+        val intent = Intent(this, FullPhotoActivity::class.java)
+        intent.putExtra(FullPhotoActivity.FULL_PHOTO_KEY, viewModel.photos.value?.get(position))
+        startActivity(intent)
+    }
 
     companion object {
         const val GLOBAL_MODE = 1
