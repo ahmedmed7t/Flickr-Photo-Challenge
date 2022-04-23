@@ -9,5 +9,4 @@ class PhotosRemoteDataSourceImp(private val photosApiService: PhotosApiService) 
     override suspend fun loadPhotos(page: Int): Response<PhotosResponseModel> {
         return photosApiService.loadPhotosList(page)
     }
-
 }

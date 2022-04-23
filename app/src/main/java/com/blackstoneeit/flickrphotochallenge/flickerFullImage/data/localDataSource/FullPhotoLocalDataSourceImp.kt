@@ -1,9 +1,9 @@
-package com.blackstoneeit.flickrphotochallenge.flickerImageList.data.localDataSource
+package com.blackstoneeit.flickrphotochallenge.flickerFullImage.data.localDataSource
 
 import com.blackstoneeit.flickrphotochallenge.app.roomDB.AppDatabase
 import com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.models.PhotoModel
 
-class FullPhotoLocalDataSourceImp(private val appDatabase: AppDatabase): FullPhotoLocalDataSource {
+class FullPhotoLocalDataSourceImp(private val appDatabase: AppDatabase) : FullPhotoLocalDataSource {
 
     override suspend fun savePhoto(photoModel: PhotoModel) =
         appDatabase.PhotoDao().insertPhoto(photoModel)

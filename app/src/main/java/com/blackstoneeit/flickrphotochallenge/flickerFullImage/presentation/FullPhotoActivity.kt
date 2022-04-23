@@ -2,12 +2,10 @@ package com.blackstoneeit.flickrphotochallenge.flickerFullImage.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.blackstoneeit.flickrphotochallenge.R
 import com.blackstoneeit.flickrphotochallenge.databinding.ActivityFullPhotoBinding
-import com.blackstoneeit.flickrphotochallenge.databinding.ActivityPhotosListBinding
 import com.blackstoneeit.flickrphotochallenge.flickerFullImage.presentation.handler.FullPhotoHandler
 import com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.models.PhotoModel
 import com.blackstoneeit.flickrphotochallenge.utils.FlickerImageUtils
@@ -28,7 +26,7 @@ class FullPhotoActivity : AppCompatActivity(), FullPhotoHandler {
         listenToViewModelValues()
     }
 
-    private fun getExtraData(){
+    private fun getExtraData() {
         val fullPhoto = intent.getParcelableExtra<PhotoModel>(FULL_PHOTO_KEY)
         viewModel.setFullPhoto(fullPhoto)
         showFullImage(fullPhoto)
@@ -42,11 +40,11 @@ class FullPhotoActivity : AppCompatActivity(), FullPhotoHandler {
         }
 
 
-    private fun listenToViewModelValues(){
-        viewModel.isPhotoExist.observe(this){
-            if(it){
+    private fun listenToViewModelValues() {
+        viewModel.isPhotoExist.observe(this) {
+            if (it) {
                 binding.fullPhotoActionImage.setImageResource(R.drawable.ic_baseline_trash_24)
-            }else{
+            } else {
                 binding.fullPhotoActionImage.setImageResource(R.drawable.ic_baseline_arrow_downward_24)
             }
         }
@@ -64,7 +62,7 @@ class FullPhotoActivity : AppCompatActivity(), FullPhotoHandler {
     override fun onActionClick(view: View) =
         viewModel.photoActionClicked()
 
-    companion object{
+    companion object {
         const val FULL_PHOTO_KEY = "FULL_PHOTO"
     }
 }

@@ -1,12 +1,12 @@
 package com.blackstoneeit.flickrphotochallenge.flickerFullImage.data.repository
 
 import com.blackstoneeit.flickrphotochallenge.flickerFullImage.domain.repository.FullPhotoRepository
-import com.blackstoneeit.flickrphotochallenge.flickerImageList.data.localDataSource.FullPhotoLocalDataSource
+import com.blackstoneeit.flickrphotochallenge.flickerFullImage.data.localDataSource.FullPhotoLocalDataSource
 import com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.models.PhotoModel
 
 class FullPhotoRepositoryImp(
     private val fullPhotoLocalDataSource: FullPhotoLocalDataSource
-): FullPhotoRepository {
+) : FullPhotoRepository {
     override suspend fun savePhotoModel(photoModel: PhotoModel) =
         fullPhotoLocalDataSource.savePhoto(photoModel)
 

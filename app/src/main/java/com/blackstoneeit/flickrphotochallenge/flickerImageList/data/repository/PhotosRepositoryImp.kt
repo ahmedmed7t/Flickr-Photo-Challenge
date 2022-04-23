@@ -8,7 +8,7 @@ import com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.repository
 class PhotosRepositoryImp(
     private val photosRemoteDataSource: PhotosRemoteDataSource,
     private val photosLocalDataSource: PhotosLocalDataSource
-): PhotosRepository{
+) : PhotosRepository {
     override suspend fun loadPhotosList(page: Int) =
         photosRemoteDataSource.loadPhotos(page)
 
