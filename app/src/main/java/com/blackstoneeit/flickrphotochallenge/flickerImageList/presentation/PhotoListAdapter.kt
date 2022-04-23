@@ -26,7 +26,8 @@ class PhotoListAdapter(
             val binding = AdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             AdViewHolder(binding)
         } else {
-            val binding = PostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding =
+                PostItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             PostViewHolder(binding)
         }
 
@@ -39,17 +40,25 @@ class PhotoListAdapter(
                 .into(holder.binding.adContentImageView)
         } else {
             holder as PostViewHolder
-            if(screenMode == PhotosListActivity.GLOBAL_MODE){
-                holder.binding.photoDownloadImage.setImageResource(R.drawable.ic_baseline_arrow_downward_24)
-            }else{
-                holder.binding.photoDownloadImage.setImageResource(R.drawable.ic_baseline_close_24)
+            holder.binding.photoDownloadImage.apply {
+                if (screenMode == PhotosListActivity.GLOBAL_MODE) {
+                    setImageResource(R.drawable.ic_baseline_arrow_downward_24)
+                } else {
+                    setImageResource(R.drawable.ic_baseline_trash_24)
+                }
             }
-            Glide.with(holder.itemView.context)
-                .load(FlickerImageUtils.getImageUrl(photoList[position]))
-                .into(holder.binding.photoImage)
-            holder.binding.photoTitleTextView.text = photoList[position].title
-            holder.binding.photoDownloadImage.setOnClickListener {
-                clickListener.onClick(position)
+
+            holder.binding.apply {
+                Glide.with(holder.itemView.context)
+                    .load(FlickerImageUtils.getImageUrl(photoList[position]))
+                    .into(photoImage)
+                photoTitleTextView.text = photoList[position].title
+                photoDownloadImage.setOnClickListener {
+                    clickListener.onActionClick(position)
+                }
+                photoCardContainer.setOnClickListener {
+                    clickListener.onClick(position)
+                }
             }
         }
     }
@@ -68,7 +77,7 @@ class PhotoListAdapter(
 
     inner class AdViewHolder(val binding: AdItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    fun setPhotos(photos: ArrayList<PhotoModel>, screenMode: Int){
+    fun setPhotos(photos: ArrayList<PhotoModel>, screenMode: Int) {
         photoList = photos
         this.screenMode = screenMode
         notifyDataSetChanged()

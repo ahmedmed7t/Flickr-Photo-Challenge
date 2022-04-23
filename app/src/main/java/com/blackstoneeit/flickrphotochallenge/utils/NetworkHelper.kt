@@ -31,7 +31,6 @@ object NetworkHelper {
                         ConnectivityManager.TYPE_ETHERNET -> true
                         else -> false
                     }
-
                 }
             }
         }
