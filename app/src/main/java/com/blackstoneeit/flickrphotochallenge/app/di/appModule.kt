@@ -1,10 +1,10 @@
-package com.blackstoneeit.flickrphotochallenge.flickerImageList.di
+package com.blackstoneeit.flickrphotochallenge.app.di
 
 import android.content.Context
 import androidx.room.Room
 import com.blackstoneeit.flickrphotochallenge.BuildConfig.BASE_URL
-import com.blackstoneeit.flickrphotochallenge.flickerImageList.data.api.PhotosApiService
-import com.blackstoneeit.flickrphotochallenge.flickerImageList.data.roomDB.AppDatabase
+import com.blackstoneeit.flickrphotochallenge.app.api.PhotosApiService
+import com.blackstoneeit.flickrphotochallenge.app.roomDB.AppDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.BuildConfig

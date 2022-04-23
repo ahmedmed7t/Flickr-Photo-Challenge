@@ -1,10 +1,13 @@
 package com.blackstoneeit.flickrphotochallenge.flickerImageList.domain.models
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity
 data class PhotoModel(
     @PrimaryKey
@@ -28,4 +31,4 @@ data class PhotoModel(
     @ColumnInfo(name = "isFamily")
     @SerializedName("isfamily")
     val isFamily: Int
-)
+): Parcelable

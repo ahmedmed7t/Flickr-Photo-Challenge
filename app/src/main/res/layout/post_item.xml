@@ -10,6 +10,7 @@
         android:layout_marginTop="@dimen/_6sdp">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/photoCardContainer"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
             android:layout_marginHorizontal="@dimen/_12sdp"

@@ -1,4 +1,4 @@
-package com.blackstoneeit.flickrphotochallenge.flickerImageList.data.roomDB
+package com.blackstoneeit.flickrphotochallenge.app.roomDB
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
